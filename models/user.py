@@ -8,4 +8,4 @@ users = Table("users", meta, Column(
     Column("email", String(255)), 
     Column("password", String(255)))
     
-meta.create_all(engine)
+users.create(engine,checkfirst=True)
