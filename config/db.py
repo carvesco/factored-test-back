@@ -20,5 +20,6 @@ connection = engine.connect()
 session_factory = sessionmaker(bind=engine)
 Session = scoped_session(session_factory)
 session = Session()
+seedSession = Session()
 
 

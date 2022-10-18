@@ -8,10 +8,12 @@ class EmplySkill(BaseModel):
 class EmployeeSchema(BaseModel):
     id: Optional[str]
     name: str
+    lastname: str
     position: str
     skills: List[EmplySkill]
     
 class EmployeeNoSkillsSchema(BaseModel):
     id: Optional[str]
     name: str
+    lastname: str
     position: str

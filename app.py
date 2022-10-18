@@ -8,23 +8,25 @@ from sqlalchemy import event
 from models.employee import Employee,employees
 from models.skill import Skill,skills
 from models.employeeskill import Employeeskill,employeeskills
-from config.db import session,connection
+from config.db import seedSession,connection
 import random as rand
 
 # Crea un servidor basico
 
-if (session.query(Employee).first() == None):
+if (seedSession.query(Employee).first() == None):
     employ = {"name": "Cesar","lastname": "Velasco",
               "position": "Developer"}
     connection.execute(employees.insert().values(employ))
-if (session.query(Skill).first() == None):
+if (seedSession.query(Skill).first() == None):
     skillslist = [{"skillname": "Python"}, {"skillname": "Java"}, {"skillname": "C#"}, {"skillname": "JS"}, {
         "skillname": "SQL"}, {"skillname": "NoSql"}, {"skillname": "React"}, {"skillname": "Vue"}]
     connection.execute(skills.insert().values(skillslist))
-if (session.query(Employeeskill).first() == None):
+if (seedSession.query(Employeeskill).first() == None):
     empskillslist = [{"employeeId": 1, "skillId": 1, "skillLevel": rand.randint(0, 10)}, {"employeeId": 1, "skillId": 2, "skillLevel": rand.randint(0, 10)}, {"employeeId": 1, "skillId": 3, "skillLevel": rand.randint(
         0, 10)}, {"employeeId": 1, "skillId": 4, "skillLevel": rand.randint(0, 10)}, {"employeeId": 1, "skillId": 6, "skillLevel": rand.randint(0, 10)}, {"employeeId": 1, "skillId": 8, "skillLevel": rand.randint(0, 10)}]
     connection.execute(employeeskills.insert().values(empskillslist))
+
+seedSession.close()
 
 app = FastAPI(
     title="factoredTestApi",

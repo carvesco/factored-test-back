@@ -17,7 +17,7 @@ def get_employees():
 
 @employee.post("/employees", response_model=EmployeeNoSkillsSchema, tags=["employees"])
 def create_employee(employee: EmployeeSchema):
-    new_employee = {"name": employee.name,
+    new_employee = {"name": employee.name,"lastname": employee.lastname,
                     "position": employee.position}
 
     result = connection.execute(employees.insert().values(new_employee))
