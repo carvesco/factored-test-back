@@ -1,19 +1,19 @@
 from fastapi import APIRouter, Response, status
 from config.db import connection
 from models.skill import skills
-from schemas.skill import Skill
+from schemas.skill import SkillSchema
 from starlette.status import HTTP_204_NO_CONTENT
 
 skill = APIRouter()
 
 
-@skill.get("/skills",response_model=list[Skill],tags=["skills"])
+@skill.get("/skills",response_model=list[SkillSchema],tags=["skills"])
 def get_skills():
     return connection.execute(skills.select()).fetchall()
 
-@skill.post("/skills",response_model=Skill,tags=["skills"])
-def create_skill(skill: Skill):
-    new_skill = {"name": skill.name}
+@skill.post("/skills",response_model=SkillSchema,tags=["skills"])
+def create_skill(skill: SkillSchema):
+    new_skill = {"skillname": skill.skillname}
     result = connection.execute(skills.insert().values(new_skill))
     return connection.execute(skills.select().where(skills.c.id == result.lastrowid)).first()
 

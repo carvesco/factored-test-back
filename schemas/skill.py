@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class Skill(BaseModel):
+class SkillSchema(BaseModel):
     id: Optional[str]
-    name: str
+    skillname: str

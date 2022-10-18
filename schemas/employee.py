@@ -5,13 +5,13 @@ class EmplySkill(BaseModel):
     id:int
     level:int
 
-class Employee(BaseModel):
+class EmployeeSchema(BaseModel):
     id: Optional[str]
     name: str
     position: str
     skills: List[EmplySkill]
     
-class EmployeeNoSkills(BaseModel):
+class EmployeeNoSkillsSchema(BaseModel):
     id: Optional[str]
     name: str
     position: str
