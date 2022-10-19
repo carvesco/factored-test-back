@@ -5,25 +5,28 @@ from routes.skill import skill
 from routes.employeeskill import employeeskill
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import event
-from models.employee import Employee,employees
-from models.skill import Skill,skills
-from models.employeeskill import Employeeskill,employeeskills
-from config.db import seedSession,connection
+from models.employee import Employee, employees
+from models.skill import Skill, skills
+from models.employeeskill import Employeeskill, employeeskills
+from config.db import seedSession, connection
 import random as rand
 
-# Crea un servidor basico
 
+# Seeds
 if (seedSession.query(Employee).first() == None):
-    employ = {"name": "Cesar","lastname": "Velasco",
-              "position": "Developer"}
+    employ = [{"name": "Cesar", "lastname": "Velasco",
+              "position": "Developer"}, {"name": "Lilia", "lastname": "Rams",
+              "position": "Tester"}, {"name": "Marco", "lastname": "Velasco",
+              "position": "Developer"}]
     connection.execute(employees.insert().values(employ))
 if (seedSession.query(Skill).first() == None):
     skillslist = [{"skillname": "Python"}, {"skillname": "Java"}, {"skillname": "C#"}, {"skillname": "JS"}, {
-        "skillname": "SQL"}, {"skillname": "NoSql"}, {"skillname": "React"}, {"skillname": "Vue"}]
+        "skillname": "SQL"}, {"skillname": "NoSql"}, {"skillname": "React"}, {"skillname": "Vue"}, {"skillname": "Angular"}, {"skillname": "Spring"}, {"skillname": ".Net"}, {"skillname": "NodeJs"}]
     connection.execute(skills.insert().values(skillslist))
 if (seedSession.query(Employeeskill).first() == None):
     empskillslist = [{"employeeId": 1, "skillId": 1, "skillLevel": rand.randint(0, 10)}, {"employeeId": 1, "skillId": 2, "skillLevel": rand.randint(0, 10)}, {"employeeId": 1, "skillId": 3, "skillLevel": rand.randint(
-        0, 10)}, {"employeeId": 1, "skillId": 4, "skillLevel": rand.randint(0, 10)}, {"employeeId": 1, "skillId": 6, "skillLevel": rand.randint(0, 10)}, {"employeeId": 1, "skillId": 8, "skillLevel": rand.randint(0, 10)}]
+        0, 10)}, {"employeeId": 1, "skillId": 4, "skillLevel": rand.randint(0, 10)}, {"employeeId": 1, "skillId": 6, "skillLevel": rand.randint(0, 10)}, {"employeeId": 1, "skillId": 8, "skillLevel": rand.randint(0, 10)}, {"employeeId": 2, "skillId": 10, "skillLevel": rand.randint(0, 10)}, {"employeeId": 2, "skillId": 5, "skillLevel": rand.randint(0, 10)}, {"employeeId": 2, "skillId": 4, "skillLevel": rand.randint(0, 10)}, {"employeeId": 2, "skillId": 1, "skillLevel": rand.randint(0, 10)}, {"employeeId": 2, "skillId": 11, "skillLevel": rand.randint(0, 10)}, {"employeeId": 2, "skillId": 6, "skillLevel": rand.randint(0, 10)}, 
+                     {"employeeId": 3, "skillId": 2, "skillLevel": rand.randint(0, 10)},{"employeeId": 3, "skillId": 4, "skillLevel": rand.randint(0, 10)},{"employeeId": 3, "skillId": 6, "skillLevel": rand.randint(0, 10)},{"employeeId": 3, "skillId": 8, "skillLevel": rand.randint(0, 10)},{"employeeId": 3, "skillId": 10, "skillLevel": rand.randint(0, 10)},{"employeeId": 3, "skillId": 12, "skillLevel": rand.randint(0, 10)}]
     connection.execute(employeeskills.insert().values(empskillslist))
 
 seedSession.close()
