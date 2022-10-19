@@ -19,7 +19,7 @@ python -m venv venv
 ## 3. Initialize the virtual enviroment
 For windows execute the next command to initialize the virtual enviroment
 ```
-venv/Script/activate
+venv/Scripts/activate
 ```
 ## 4. Install the dependencies
 execute the next command to install all the dependencies needed.
