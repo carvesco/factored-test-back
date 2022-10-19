@@ -23,10 +23,3 @@ skills.create(engine, checkfirst=True)
 employeeskills.create(engine, checkfirst=True)
 
 
-#if (session.query(Skill).first() == None):
-#    skillslist = [{"skillname": "Python"}, {"skillname": "Java"}, {"skillname": "C#"}, {"skillname": "JS"}, {
-#        "skillname": "SQL"}, {"skillname": "NoSql"}, {"skillname": "React"}, {"skillname": "Vue"}]
-#    connection.execute(skills.insert().values(skillslist))
-
-
-

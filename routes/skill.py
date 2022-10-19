@@ -18,6 +18,6 @@ def create_skill(skill: SkillSchema):
     return connection.execute(skills.select().where(skills.c.id == result.lastrowid)).first()
 
 @skill.delete("/skills/{id}",status_code=status.HTTP_204_NO_CONTENT,tags=["skills"])
-def delete_user(id: str):
+def delete_skill(id: str):
     connection.execute(skills.delete().where(skills.c.id == id))
     return Response(status_code=HTTP_204_NO_CONTENT)

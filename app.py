@@ -43,7 +43,8 @@ app = FastAPI(
         "name": "skills",
         "description": "skills routes"
 
-    }]
+    },
+    ]
 )
 
 
