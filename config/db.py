@@ -8,15 +8,15 @@ import os
 
 load_dotenv()
 
-USER = os.environ.get("USER")
-PASSWORD = os.environ.get("PASSWORD")
-PORT = os.environ.get("PORT")
-DATABASE = os.environ.get("DATABASE")
+USER = os.environ["USER"]
+PASSWORD = os.environ["PASSWORD"]
+PORT = os.environ["PORT"]
+DATABASE = os.environ["DATABASE"]
+HOST = os.environ["HOST"]
+CONNECTION_URI = f"mysql+pymysql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
 
 
-url = "mysql+pymysql://"+str(USER)+":"+str(PASSWORD) + \
-    "@localhost:"+str(PORT)+"/"+str(DATABASE)
-engine = create_engine(url,pool_recycle=3600, pool_size=25, max_overflow=5)
+engine = create_engine(CONNECTION_URI,pool_recycle=3600, pool_size=25, max_overflow=5)
 
 if not database_exists(engine.url):
     create_database(engine.url)

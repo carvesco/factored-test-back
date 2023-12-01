@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import APIRouter, Response, status
 from config.db import connection, session
 from models.employee import employees, Employee
@@ -10,7 +12,7 @@ from starlette.status import HTTP_204_NO_CONTENT
 employee = APIRouter()
 
 
-@employee.get("/employees", response_model=list[EmployeeNoSkillsSchema], tags=["employees"])
+@employee.get("/employees", response_model=List[EmployeeNoSkillsSchema], tags=["employees"])
 def get_employees():
     return connection.execute(employees.select()).fetchall()
 

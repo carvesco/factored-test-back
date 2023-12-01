@@ -1,4 +1,5 @@
-import imp
+from typing import List
+
 from fastapi import APIRouter, Response, status
 from config.db import connection
 from models.user import users
@@ -8,7 +9,7 @@ from starlette.status import HTTP_204_NO_CONTENT
 user = APIRouter()
 
 
-@user.get("/users",response_model=list[UserSchema],tags=["users"])
+@user.get("/users",response_model=List[UserSchema],tags=["users"])
 def get_users():
     return connection.execute(users.select()).fetchall()
 

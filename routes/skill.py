@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import APIRouter, Response, status
 from config.db import connection
 from models.skill import skills
@@ -7,7 +9,7 @@ from starlette.status import HTTP_204_NO_CONTENT
 skill = APIRouter()
 
 
-@skill.get("/skills",response_model=list[SkillSchema],tags=["skills"])
+@skill.get("/skills",response_model=List[SkillSchema],tags=["skills"])
 def get_skills():
     return connection.execute(skills.select()).fetchall()
 
